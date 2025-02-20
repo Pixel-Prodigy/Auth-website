@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function About() {
   return (
-    <section className="flex flex-col gap-10 pt-24 items-center justify-center">
+    <section className="flex flex-col gap-10 pt-24 items-center justify-center about">
       <h1 className="text-6xl text-white font-bold tracking-wide">About Us</h1>
       <article className="text-lg text-gray-400 max-w-2xl text-center">
         Welcome to our anime hub! We bring you the best anime quotes, character insights, and discussions. Whether you&apos;re a casual watcher or a hardcore otaku, our platform is designed to fuel your anime passion.
