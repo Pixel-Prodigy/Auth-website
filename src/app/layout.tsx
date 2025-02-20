@@ -1,7 +1,6 @@
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import AuthProvider from "@/components/AuthProvider";
-import Link from "next/link";
 import Header from "@/components/layout/Header";
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
