@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 export default function Header() {
   const { data: session } = useSession();
   const pathname = usePathname();
@@ -34,18 +35,16 @@ export default function Header() {
       {session ? (
         <Link
           href="/login"
-          className={`transition-colors duration-300 hover:text-gray-300 flex items-center gap-2 ${
+          className={`transition-colors duration-300 hover:text-gray-300 ${
             pathname === "/login" ? " text-white border-b-2 pb-1" : ""
           }`}
         >
-          <p>{session.user?.name}</p>
-          {session.user?.image && (
-            <img
-              src="{session.user?.image}"
-              className="w-8 h-8 z-10 rounded-full"
-              alt=""
-            />
-          )}
+          <div className="flex items-center gap-2">
+            {session.user?.name}
+            {session.user?.image && (
+              <Image src={session.user?.image} alt="User Image" className="rounded-full"  width={25} height={25} />
+            )}
+          </div>
         </Link>
       ) : (
         <Link
