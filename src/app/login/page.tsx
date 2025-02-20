@@ -27,10 +27,10 @@ export default async function LoginPage() {
         </CardHeader>
         <CardContent className="flex flex-col justify-center items-center gap-2">
           {session ? (
-            <p>Logged in as {session.user?.name}</p>
+            <p>Logged in as {session.user?.name}. Thanks for logging in!, we promise to provide you with the best experience. And keep your data and progress safe.So you can enjoy the best experience without any worries.</p>
           ) : (
             <p>
-              Login with GitHub to get the most out of this project. Being logged in helps keep your data and progress safe.
+              Login to get the most out of this project. Being logged in helps to keep your data and progress safe. And helps us to give you the best experience.
             </p>
           )}
         </CardContent>
