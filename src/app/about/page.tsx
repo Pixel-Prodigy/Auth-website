@@ -1,5 +1,5 @@
 "use client";
-import { FaCheck } from 'react-icons/fa';
+import { FaCheck } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
