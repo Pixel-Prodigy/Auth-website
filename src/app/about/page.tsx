@@ -12,7 +12,7 @@ export default function About() {
       </article>
       <div className="flex flex-col gap-4">
         <h2 className="text-3xl font-semibold text-white">Why Choose Us?</h2>
-        <ul className="text-lg text-gray-400">
+        <ul className="text-lg text-gray-400 list-disc list-inside">
           <li className="flex items-center gap-2">
             <FaCheck className="text-green-500" /> Curated anime quotes from all genres
           </li>
