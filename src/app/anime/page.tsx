@@ -29,9 +29,26 @@ export default async function AnimeAi() {
   }
 
   return (
-    <main className="grid grid-cols-1 gap-16 h-full max-w-[1280px] pt-40 mx-auto">
+    <main className="grid grid-cols-1 gap-16 max-w-[1280px] py-20 pt-40 mx-auto">
       <article className="flex items-center gap-12">
-        <div className="rounded-md shadow-white/70 shadow-md bg-white h-[400px] w-[400px]"></div>
+        <Link href="/anime/animeSearch">
+          <div
+            className="rounded-md shadow-white/70  shadow-md bg-white h-[400px] w-[400px] relative"
+            style={{
+              backgroundImage: `url(/allAnime.jpg)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="absolute inset-0 bg-black bg-opacity-0 group hover:bg-opacity-40 transition duration-300">
+              <div className="flex items-center justify-center h-full">
+                <div className="opacity-0 group-hover:opacity-100 text-white transition duration-500 cursor-pointer sele   text-4xl font-bold">
+                  Anime Search
+                </div>
+              </div>
+            </div>
+          </div>
+        </Link>
         <div className="max-w-[650px] flex flex-col gap-6 text-left">
           <h2 className="text-5xl font-bold text-white">Anime Search</h2>
           <p className="text-gray-300 text-2xl leading-loose">
@@ -43,7 +60,24 @@ export default async function AnimeAi() {
       </article>
 
       <article className="flex items-center gap-12">
-        <div className="rounded-md shadow-white/70 shadow-md bg-white h-[400px] w-[400px]"></div>
+        <Link href="/anime/topAnime">
+          <div
+            className="rounded-md shadow-white/70 shadow-md bg-white h-[400px] w-[400px] relative"
+            style={{
+              backgroundImage: `url(/collage.jpg)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="absolute inset-0 bg-black bg-opacity-0 group hover:bg-opacity-40 transition duration-300">
+              <div className="flex items-center justify-center h-full">
+                <div className="opacity-0 group-hover:opacity-100 text-white transition duration-500 cursor-pointer sele   text-4xl font-bold">
+                  Top Airing Anime
+                </div>
+              </div>
+            </div>
+          </div>
+        </Link>
         <div className="max-w-[650px] flex flex-col gap-6 text-left">
           <h2 className="text-5xl font-bold text-white">Top Airing Anime</h2>
           <p className="text-gray-300 text-2xl leading-loose">
@@ -54,9 +88,26 @@ export default async function AnimeAi() {
       </article>
 
       <article className="flex items-center gap-12">
-        <div className="rounded-md shadow-white/70 shadow-md bg-white h-[400px] w-[400px]"></div>
+        <Link href="/anime/animeId">
+          <div
+            className="rounded-md shadow-white/70 shadow-md bg-white h-[400px] w-[400px] relative"
+            style={{
+              backgroundImage: `url(/id.jpg)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="absolute inset-0 bg-black bg-opacity-0 group hover:bg-opacity-40 transition duration-300">
+              <div className="flex items-center justify-center h-full">
+                <div className="opacity-0 group-hover:opacity-100 text-white transition duration-500 cursor-pointer sele   text-4xl font-bold">
+                  Search Anime by ID
+                </div>
+              </div>
+            </div>
+          </div>
+        </Link>
         <div className="max-w-[650px] flex flex-col gap-6 text-left">
-          <h2 className="text-5xl font-bold text-white">Fetch Anime by ID</h2>
+          <h2 className="text-5xl font-bold text-white">Search Anime by ID</h2>
           <p className="text-gray-300 text-2xl leading-loose">
             Retrieve precise details of any anime by using its unique ID. Get
             metadata, character lists, and additional insights.
@@ -65,7 +116,24 @@ export default async function AnimeAi() {
       </article>
 
       <article className="flex items-center gap-12">
-        <div className="rounded-md shadow-white/70 shadow-md bg-white h-[400px] w-[400px]"></div>
+        <Link href="/anime/randomQuote">
+          <div
+            className="rounded-md shadow-white/70 shadow-md bg-white h-[400px] w-[400px] relative"
+            style={{
+              backgroundImage: `url(/lines.jpg)`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div className="absolute inset-0 bg-black bg-opacity-0 group hover:bg-opacity-40 transition duration-300">
+              <div className="flex items-center justify-center h-full">
+                <div className="opacity-0 group-hover:opacity-100 text-white transition duration-500 cursor-pointer sele   text-4xl font-bold">
+                  Random Anime Quote
+                </div>
+              </div>
+            </div>
+          </div>
+        </Link>
         <div className="max-w-[650px] flex flex-col gap-6 text-left">
           <h2 className="text-5xl font-bold text-white">Random Anime Quote</h2>
           <p className="text-gray-300 text-2xl leading-loose">
