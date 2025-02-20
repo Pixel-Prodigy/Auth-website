@@ -2,20 +2,75 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+body {
+  font-family: Arial, Helvetica, sans-serif;
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.bgColor {
+  background: linear-gradient(to right, #474646, #333);
+}
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes rotate {
+  from {
+    --angle: 0deg;
+  }
+  to {
+    --angle: 360deg;
   }
 }
+.card {
+  position: relative;
+  background: rgb(103, 102, 102);
+}
+.single::before,
+.single::after {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  z-index: -1;
+  width: 102%;
+  border-radius: 5px;
+  height: 102%;
+  content: "";
+  animation: rotate 3s linear infinite;
+  background: conic-gradient(
+    from var(--angle),
+    rgb(255, 255, 255) 0deg 5%,
+    transparent 35% 50%,
+    white 50% 55%,
+    transparent 85%
+  );
+}
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.single::after {
+  filter: blur(14px);
+}
+
+.multi::before,
+.multi::after {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  z-index: -1;
+  width: 102%;
+  border-radius: 5px;
+
+  height: 102%;
+  content: "";
+  animation: rotate 3s linear infinite;
+  background: repeating-conic-gradient(
+    from var(--angle),
+    rgb(146, 5, 233),
+    rgb(64, 0, 255) 25%,
+    rgb(0, 255, 191) 50%,
+    rgb(3, 243, 3) 75%,
+    rgb(146, 5, 233)
+  );
+}
+
+.multi::after {
+  filter: blur(15px);
 }
