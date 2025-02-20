@@ -64,13 +64,83 @@ body {
   background: repeating-conic-gradient(
     from var(--angle),
     rgb(146, 5, 233),
-    rgb(64, 0, 255) 25%,
-    rgb(0, 255, 191) 50%,
-    rgb(3, 243, 3) 75%,
+    rgb(64, 0, 255),
+    rgb(0, 255, 191),
+    rgb(3, 243, 3),
+    rgb(177, 223, 10),
+    rgb(227, 209, 14),
+    rgb(243, 175, 3),
+    rgb(255, 166, 152),
+    rgb(213, 88, 20),
+    rgb(232, 136, 136),
+    rgb(234, 92, 229),
     rgb(146, 5, 233)
   );
 }
 
 .multi::after {
   filter: blur(15px);
+}
+
+.double::before,
+.double::after {
+  position: absolute;
+  top: -4px;
+  left: -7px;
+  z-index: -1;
+  width: 102%;
+  border-radius: 5px;
+
+  height: 102%;
+  content: "";
+  animation: rotate 3s linear infinite;
+  background: repeating-conic-gradient(
+    from var(--angle),
+    rgb(255, 205, 152),
+    rgb(125, 107, 70) 25%,
+    rgb(217, 179, 136) 50%,
+    rgb(120, 97, 63) 75%,
+    rgb(225, 205, 152)
+  );
+}
+
+.double::after {
+  filter: blur(20px);
+}
+
+.third::before,
+.third::after {
+  position: absolute;
+  top: -4px;
+  left: -7px;
+  z-index: -1;
+  width: 102%;
+  border-radius: 5px;
+
+  height: 102%;
+  content: "";
+  animation: rotate 3s linear infinite;
+  background: repeating-conic-gradient(
+    from var(--angle),
+    rgb(255, 184, 54),
+    rgb(164, 132, 46),
+    rgb(240, 145, 93),
+    rgb(143, 67, 44),
+    rgb(255, 184, 54)
+  );
+}
+
+.third::after {
+  filter: blur(20px);
+}
+.about {
+  background-image: url(/newBg.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  position: fixed;
+  background-size: cover;
+  inset: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
 }
