@@ -14,6 +14,7 @@ export default [
   {
     rules: {
       quotes: "off",
+      "react/no-unescaped-entities": "off",
     },
   },
 ];
