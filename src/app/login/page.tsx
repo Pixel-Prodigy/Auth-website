@@ -1,4 +1,5 @@
 import { getServerSession } from "next-auth";
+import { Session } from "next-auth";
 import {
   Card,
   CardContent,
@@ -8,36 +9,70 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { SignInButton, SignOutButton } from "./auth-buttons";
+import Image from "next/image";
 
 export default async function LoginPage() {
-  const session = await getServerSession();
+  let session: Session | null = null;
+
+  try {
+    session = await getServerSession();
+  } catch (error) {
+    console.error("Error fetching session:", error);
+  }
+
+  if (!session) {
+    return (
+      <main className="flex min-h-screen flex-col items-center justify-center">
+        <Card className="w-full max-w-[500px] p-6 shadow-lg border border-gray-200">
+          <CardHeader className="text-center">
+            <CardTitle className="text-4xl font-semibold">Login</CardTitle>
+            <CardDescription className="text-xl mt-2">
+              Please login to continue
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="text-center text-gray-700">
+            <p>
+              Login to get the most out of this project. Being logged in helps
+              keep your data and progress safe while enhancing your experience.
+            </p>
+          </CardContent>
+          <CardFooter className="flex justify-center">
+            <SignInButton />
+          </CardFooter>
+        </Card>
+      </main>
+    );
+  }
 
   return (
-    <div className="flex min-h-screen flex-col items-center mt-40">
-      <Card className="w-full max-w-[500px] h-[400px] flex flex-col justify-center gap-5">
-        <CardHeader className="flex flex-col gap-2">
-          <CardTitle className="text-4xl font-semibold">
-            {session ? session.user?.name : "Login"}
-          </CardTitle>
-          <CardDescription className="text-xl">
-            {session
-              ? "Thanks for logging in! We'll provide you with the best experience."
-              : "Please sign in to continue."}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="flex flex-col justify-center items-center gap-2">
-          {session ? (
-            <p>Logged in as {session.user?.name}. Thanks for logging in!, we promise to provide you with the best experience. And keep your data and progress safe.So you can enjoy the best experience without any worries.</p>
-          ) : (
-            <p>
-              Login to get the most out of this project. Being logged in helps to keep your data and progress safe. And helps us to give you the best experience.
-            </p>
-          )}
-        </CardContent>
-        <CardFooter>
-          {session ? <SignOutButton /> : <SignInButton />}
-        </CardFooter>
-      </Card>
-    </div>
+    <main
+      style={{ borderRadius: "8px" }}
+      className="flex flex-col items-center gap-8 py-14 rounded-lg px-20 bg-gray-200/20 max-w-[480px] mx-auto mt-40"
+    >
+      <section className="flex flex-col items-center gap-2">
+        {session.user?.image && (
+          <Image
+            alt={session.user?.name || "User profile picture"}
+            src={session.user?.image}
+            width={200}
+            height={200}
+            className="rounded-full shadow-lg border-2 border-gray-300"
+          />
+        )}
+        <h2 className="mt-4 text-white text-4xl font-bold">
+          {session.user?.name}
+        </h2>
+      </section>
+      <p className="text-gray-300">{session.user?.email}</p>
+      <p className="mt-4 text-lg font-medium text-center text-gray-800">
+        Welcome back,{" "}
+        <span className="text-blue-300 font-semibold">
+          {session.user?.name}
+        </span>
+        ! 🚀 Your journey continues—let's make something amazing today!
+      </p>
+
+      <SignOutButton />
+    </main>
   );
 }
