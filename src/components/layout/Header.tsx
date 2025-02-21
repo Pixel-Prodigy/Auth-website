@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
+import InteractiveCards from "../ui/InteractiveCards";
 export default function Header() {
   const { data: session } = useSession();
   const pathname = usePathname();
@@ -40,9 +40,14 @@ export default function Header() {
           }`}
         >
           <div className="flex items-center gap-2">
-            {session.user?.name}
             {session.user?.image && (
-              <Image src={session.user?.image} alt="User Image" className="rounded-full"  width={25} height={25} />
+              <InteractiveCards
+                src={session.user?.image}
+                variant="profile-imageSmall"
+                className="rounded-full"
+                width={25}
+                height={25}
+              />
             )}
           </div>
         </Link>
