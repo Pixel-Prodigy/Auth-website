@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/card";
 import { SignInButton, SignOutButton } from "./auth-buttons";
 import Image from "next/image";
+import InteractiveCards from "@/components/ui/InteractiveCards";
 
 export default async function LoginPage() {
   let session: Session | null = null;
@@ -51,12 +52,12 @@ export default async function LoginPage() {
     >
       <section className="flex flex-col items-center gap-2">
         {session.user?.image && (
-          <Image
-            alt={session.user?.name || "User profile picture"}
+          <InteractiveCards
             src={session.user?.image}
+            variant="profile-image"
             width={200}
             height={200}
-            className="rounded-full shadow-lg border-2 border-gray-300"
+            className="rounded-full profile-image  shadow-lg "
           />
         )}
         <h2 className="mt-4 text-white text-4xl font-bold">
