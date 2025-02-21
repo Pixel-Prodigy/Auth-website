@@ -100,14 +100,14 @@ export default async function AnimeAi() {
             <div className="absolute inset-0 bg-black bg-opacity-0 group hover:bg-opacity-40 transition duration-300">
               <div className="flex items-center justify-center h-full">
                 <div className="opacity-0 group-hover:opacity-100 text-white transition duration-500 cursor-pointer sele   text-4xl font-bold">
-                  Search Anime by ID
+                  Search Anime by Genre
                 </div>
               </div>
             </div>
           </div>
         </Link>
         <div className="max-w-[650px] flex flex-col gap-6 text-left">
-          <h2 className="text-5xl font-bold text-white">Search Anime by ID</h2>
+          <h2 className="text-5xl font-bold text-white">Search Anime by Genre</h2>
           <p className="text-gray-300 text-2xl leading-loose">
             Retrieve precise details of any anime by using its unique ID. Get
             metadata, character lists, and additional insights.
