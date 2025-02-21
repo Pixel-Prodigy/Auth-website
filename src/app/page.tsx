@@ -1,15 +1,14 @@
 import { getServerSession } from "next-auth";
-import AuthProvider from "@/components/AuthProvider";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { FaArrowRight, FaCheck } from "react-icons/fa";
 import InteractiveCards from "@/components/ui/InteractiveCards";
+import TypeWriter from "@/components/ui/TypeWriter";
 
 export default async function Home() {
   const session = await getServerSession();
 
   return (
-    <AuthProvider>
       <section className="flex flex-col gap-10 pt-40 items-center justify-center">
         <h1 className="text-7xl text-white font-bold tracking-wide">
           Hello, {session ? session.user?.name : "Unknown User"}!
@@ -34,6 +33,9 @@ export default async function Home() {
             )}
           </Button>
         </Link>
+        <article>
+          <TypeWriter />
+        </article>
         <div className="grid grid-cols-2 gap-20 mt-28">
           <InteractiveCards
             variant="single"
@@ -93,6 +95,5 @@ export default async function Home() {
           />
         </div>
       </section>
-    </AuthProvider>
   );
 }
