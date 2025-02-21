@@ -144,3 +144,70 @@ body {
   width: 100vw;
   height: 100vh;
 }
+.profile-image {
+  position: relative;
+  border-radius: 50%;
+}
+.profile-image::before,
+.profile-image::after {
+  position: absolute;
+  inset: -3px;
+  z-index: -1;
+  width: 103%;
+  border-radius: 50%;
+  height: 103%;
+  content: "";
+  animation: rotate 2s linear infinite;
+  background: conic-gradient(
+    from var(--angle),
+    rgb(255, 200, 97) 0deg 5%,
+    transparent 35% 50%,
+    rgb(255, 204, 109) 50% 55%,
+    transparent 85%
+  );
+}
+.profile-image::after {
+  filter: blur(20px);
+
+  background: conic-gradient(
+    from var(--angle),
+    rgb(255, 181, 45) 0deg 5%,
+    transparent 35% 50%,
+    rgb(255, 178, 35) 50% 55%,
+    transparent 85%
+  );
+}
+.profile-imageSmall {
+  position: relative;
+  border-radius: 50%;
+}
+.profile-imageSmall::before,
+.profile-imageSmall::after {
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  width: 108%;
+  border-radius: 50%;
+  height: 108%;
+  content: "";
+  animation: rotate 2s linear infinite;
+  background: conic-gradient(
+    from var(--angle),
+    rgb(255, 255, 255) 0deg 5%,
+    transparent 35% 50%,
+    rgb(243, 243, 243) 50% 55%,
+    transparent 85%
+  );
+}
+.profile-imageSmall::after {
+  filter: blur(20px);
+
+  background: conic-gradient(
+    from var(--angle),
+    rgb(243, 243, 243) 0deg 5%,
+    transparent 35% 50%,
+    rgb(243, 243, 243) 50% 55%,
+    transparent 85%
+  );
+}
+
