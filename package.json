@@ -15,6 +15,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "components": "link:src/components",
+    "framer-motion": "^12.4.7",
     "lib": "link:src/lib",
     "login": "link:src/app/login",
     "lucide-react": "^0.475.0",
