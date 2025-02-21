@@ -42,7 +42,7 @@ export default async function AnimeAi() {
           >
             <div className="absolute inset-0 bg-black bg-opacity-0 group hover:bg-opacity-40 transition duration-300">
               <div className="flex items-center justify-center h-full">
-                <div className="opacity-0 group-hover:opacity-100 text-white transition duration-500 cursor-pointer sele   text-4xl font-bold">
+                <div className="opacity-0 group-hover:opacity-100 text-center text-white transition duration-500 cursor-pointer sele   text-4xl font-bold">
                   Anime Search
                 </div>
               </div>
@@ -71,7 +71,7 @@ export default async function AnimeAi() {
           >
             <div className="absolute inset-0 bg-black bg-opacity-0 group hover:bg-opacity-40 transition duration-300">
               <div className="flex items-center justify-center h-full">
-                <div className="opacity-0 group-hover:opacity-100 text-white transition duration-500 cursor-pointer sele   text-4xl font-bold">
+                <div className="opacity-0 group-hover:opacity-100 text-center text-white transition duration-500 cursor-pointer sele   text-4xl font-bold">
                   Top Airing Anime
                 </div>
               </div>
@@ -99,7 +99,7 @@ export default async function AnimeAi() {
           >
             <div className="absolute inset-0 bg-black bg-opacity-0 group hover:bg-opacity-40 transition duration-300">
               <div className="flex items-center justify-center h-full">
-                <div className="opacity-0 group-hover:opacity-100 text-white transition duration-500 cursor-pointer sele   text-4xl font-bold">
+                <div className="opacity-0 group-hover:opacity-100 text-center text-white transition duration-500 cursor-pointer sele   text-4xl font-bold">
                   Search Anime by Genre
                 </div>
               </div>
@@ -127,7 +127,7 @@ export default async function AnimeAi() {
           >
             <div className="absolute inset-0 bg-black bg-opacity-0 group hover:bg-opacity-40 transition duration-300">
               <div className="flex items-center justify-center h-full">
-                <div className="opacity-0 group-hover:opacity-100 text-white transition duration-500 cursor-pointer sele   text-4xl font-bold">
+                <div className="opacity-0 group-hover:opacity-100 text-center text-white transition duration-500 cursor-pointer sele   text-4xl font-bold">
                   Random Anime Quote
                 </div>
               </div>
