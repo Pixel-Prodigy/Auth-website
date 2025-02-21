@@ -35,6 +35,7 @@ export const AnimeProvider = ({ children }: { children: ReactNode }) => {
         setData(result.data);
       } catch (err) {
         setError("Error fetching anime data");
+        console.error(err);
       } finally {
         setLoading(false);
       }

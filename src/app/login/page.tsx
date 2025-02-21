@@ -9,7 +9,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { SignInButton, SignOutButton } from "./auth-buttons";
-import Image from "next/image";
 import InteractiveCards from "@/components/ui/InteractiveCards";
 
 export default async function LoginPage() {

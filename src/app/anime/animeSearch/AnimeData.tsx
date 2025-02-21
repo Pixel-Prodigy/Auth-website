@@ -4,7 +4,7 @@ import { AnimeContext } from "./Context";
 export default function AnimeData() {
   const ctx = useContext(AnimeContext);
   if (!ctx) throw new Error("context is getting undefined in gettingTheData");
-  const { data, loading, error } = ctx;
+  const { data, loading } = ctx;
   console.log(data);
   return (
     <div>
