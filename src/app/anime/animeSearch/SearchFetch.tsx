@@ -81,7 +81,6 @@ export default function AnimeShowcase() {
               <div key={anime.mal_id} className="relative group">
                 <AnimeSearchImg
                   animeId={anime.mal_id}
-                  anime={anime.title_english}
                   animeSrc={anime.images.jpg.large_image_url}
                   className={`relative group bg-cover max-w-${
                     index === 0
@@ -128,7 +127,6 @@ export default function AnimeShowcase() {
                 <div key={anime.mal_id} className="relative group">
                   <AnimeSearchImg
                     animeId={anime.mal_id}
-                    anime={anime.title_english}
                     animeSrc={anime.images.jpg.large_image_url}
                   />
                   <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center transition-all duration-300">
@@ -173,7 +171,6 @@ export default function AnimeShowcase() {
                     {" "}
                     <AnimeSearchImg
                       animeId={anime.mal_id}
-                      anime={anime.title_english}
                       animeSrc={anime.images.jpg.large_image_url}
                     />{" "}
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center transition-all duration-300">
