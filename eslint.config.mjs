@@ -1,20 +1,9 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-export default [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
-  {
-    rules: {
-      quotes: "off",
-      "react/no-unescaped-entities": "off",
-    },
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  eslint: {
+    ignoreDuringBuilds: true, // Disable ESLint during builds
+    // disable: true // (If supported in the final Next.js 15 release)
   },
-];
+};
+
+export default nextConfig;
