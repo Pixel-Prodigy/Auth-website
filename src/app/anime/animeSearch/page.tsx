@@ -1,9 +1,9 @@
-
-
-    export default function AnimeSearch() {
-    return (
-        <div>
-            <h1>Anime Search</h1>
-        </div>
-    );
+import AnimeData from "./AnimeData";
+import {AnimeProvider} from "./Context";
+export default function AnimeSearch() {
+  return (
+    <AnimeProvider>
+      <AnimeData />
+    </AnimeProvider>
+  );
 }
