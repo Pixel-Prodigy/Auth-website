@@ -4,7 +4,6 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import AnimeSearchImg from "@/components/ui/AnimeSearchImg";
-import { div } from "framer-motion/client";
 
 type DataType = {
   mal_id: number;
@@ -21,7 +20,7 @@ type DataType = {
 };
 
 export default function AnimeShowcase() {
-  const [page, setPage] = useState(1);
+  const [page, _setPage] = useState(1);
   const [data, setData] = useState<DataType[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);

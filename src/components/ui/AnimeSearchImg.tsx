@@ -2,12 +2,10 @@ import React from "react";
 import Link from "next/link";
 
 export default function AnimeSearchImg({
-  anime,
   animeSrc,
   className,
   animeId,
 }: {
-  anime: string;
   animeSrc: string;
   className?: string;
   animeId: number;
