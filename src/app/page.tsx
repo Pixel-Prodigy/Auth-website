@@ -13,6 +13,7 @@ export default async function Home() {
         <h1 className="text-7xl text-white font-bold tracking-wide">
           Hello, {session ? session.user?.name : "Unknown User"}!
         </h1>
+    
         {session ? (
           <p className="text-lg text-gray-400">
             We promise to provide the best experience to our users to the best
