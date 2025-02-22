@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const messages = [
   "We",
@@ -16,33 +16,43 @@ const messages = [
 
 export default function LandingPage() {
   const [index, setIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    if (index >= messages.length - 1) return; // Stop incrementing when last message is shown
+    if (index >= messages.length) {
+      setTimeout(() => setIsVisible(false), 100);
+      return;
+    }
 
     const interval = setInterval(() => {
       setIndex((prevIndex) => prevIndex + 1);
-    }, 300);
+    }, 350);
 
     return () => clearInterval(interval);
-  }, [index]); // Add index as dependency to stop updates when max reached
+  }, [index]);
 
   return (
-    <div
-      className={`w-screen max-w-screen min-h-screen max-h-screen fixed top-0 flex items-center justify-center bg-black text-white overflow-hidden transition-opacity duration-1000 ${
-        index === messages.length - 1 ? "opacity-0 -z-10" : "opacity-100 z-10"
-      }`}
-    >
-      <motion.div
-        key={index}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -20 }}
-        transition={{ duration: 0.8 }}
-        className="absolute text-3xl md:text-8xl font-bold text-center"
-      >
-        {messages[index]}
-      </motion.div>
-    </div>
+    <AnimatePresence>
+      {isVisible && (
+        <motion.div
+          className="w-screen h-screen fixed top-0 left-0 flex items-center justify-center z-10 bg-gray-950 text-white overflow-hidden"
+          initial={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0.7, backdropFilter: `blur(20px)`, y: -1000 }}
+          transition={{ duration: 1 }}
+        >
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4 }}
+            className="absolute text-4xl md:text-8xl font-extrabold text-center text-glow animate-pulse"
+          >
+            {messages[index]}
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

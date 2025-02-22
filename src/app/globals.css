@@ -230,3 +230,7 @@ body {
 
 @layer base {
 }
+.text-glow {
+  text-shadow: 0 0 10px #8a2be2, 0 0 20px #8a2be2, 0 0 30px #8a2be2,
+    0 0 40px #9400d3, 0 0 50px #9400d3;
+}
