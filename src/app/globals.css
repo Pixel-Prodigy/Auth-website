@@ -25,12 +25,14 @@ body {
   position: relative;
   background: rgb(103, 102, 102);
 }
+
 .single::before,
 .single::after {
   position: absolute;
   top: -4px;
   left: -4px;
   z-index: -1;
+  transition: all 2.5s ease;
   width: 102%;
   border-radius: 5px;
   height: 102%;
@@ -48,6 +50,20 @@ body {
 .single::after {
   filter: blur(14px);
 }
+.single:hover::before,
+.single:hover::after {
+  animation: rotate 1s linear infinite;
+}
+.single:hover::after {
+  filter: blur(30px);
+}
+.multi:hover::before,
+.multi:hover::after {
+  animation: rotate 1s linear infinite;
+}
+.multi:hover::after {
+  filter: blur(30px);
+}
 
 .multi::before,
 .multi::after {
@@ -57,6 +73,7 @@ body {
   z-index: -1;
   width: 102%;
   border-radius: 5px;
+  transition: all 2.5s ease;
 
   height: 102%;
   content: "";
@@ -200,7 +217,7 @@ body {
   );
 }
 .profile-imageSmall::after {
-  filter: blur(20px);
+  filter: blur(5px);
 
   background: conic-gradient(
     from var(--angle),
@@ -211,5 +228,5 @@ body {
   );
 }
 
-@layer base {}
-
+@layer base {
+}
