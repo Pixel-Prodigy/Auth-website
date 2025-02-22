@@ -4,7 +4,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaSearch } from "react-icons/fa";
 type DataType = {
   mal_id: number;
   images: {
@@ -65,39 +65,41 @@ export default function AnimeShowcase() {
 
   return (
     <div className="max-w-6xl pt-20 pb-20 mx-auto text-white">
-      <h1 className="mb-4 text-4xl font-bold">Top Animes</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="mb-4 text-4xl font-bold">Top Animes</h1>
+        <Link href="/anime/animeSearch/searching">
+          <FaSearch className="text-3xl text-white/50 hover:text-white transition-colors duration-300 cursor-pointer" />
+        </Link>
+      </div>
       <div className="flex gap-4 pb-4 mb-8 overflow-x-auto cursor-pointer">
         {loading
-          ? [...Array(5)].map((_, index) => (
+          ? Array.from({ length: 5 }).map((_, index) => (
               <Skeleton
                 key={index}
-                className={`w-${
-                  index === 0 ? "[350px] h-[500px]" : "[200px] h-[300px]"
+                className={`${
+                  index === 0 ? "w-[350px] h-[500px]" : "w-[200px] h-[300px]"
                 } rounded-lg bg-gray-300/40`}
                 style={{ borderRadius: "8px" }}
               />
             ))
-          : data.slice(0, 5).map((anime, index) => (
+          : data?.slice(0, 5).map((anime, index) => (
               <Link
                 key={anime.mal_id}
                 href={`/anime/animeSearch/${anime.mal_id}`}
-                className={`relative group bg-cover   max-w-${
-                  index === 0 ? "[350px] h-[500px]" : "[200px] h-[300px]"
-                } rounded-md group`}
+                className={`relative group bg-cover ${
+                  index === 0 ? "w-[350px] h-[500px]" : "w-[200px] h-[300px]"
+                } rounded-md`}
               >
                 <img
                   src={anime.images.jpg.large_image_url}
-                  className={`relative group bg-cover   max-w-${
+                  className={`relative group bg-cover ${
                     index === 0
-                      ? "[350px] h-full max-h-[400px]"
-                      : "[200px] h-full max-h-[300px]"
+                      ? "w-[350px] h-full max-h-[400px]"
+                      : "w-[200px] h-full max-h-[300px]"
                   }`}
                   alt=""
                 />
-                <div
-                  className={`absolute max-h-[400px]  inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center transition-all duration-300
-                    `}
-                >
+                <div className="absolute max-h-[400px] w-full  inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 flex items-center justify-center transition-all duration-300">
                   <span className="group-hover:opacity-100 flex flex-col items-center text-lg font-bold text-center transition duration-300 opacity-0">
                     {anime.title_english}
                     <FaArrowRight className="mt-4 text-3xl" />
@@ -119,7 +121,7 @@ export default function AnimeShowcase() {
         </Button>
         <div className="flex gap-4">
           {loading
-            ? [...Array(5)].map((_, index) => (
+            ? Array.from({ length: 5 }).map((_, index) => (
                 <Skeleton
                   key={index}
                   className="min-w-48 h-60 bg-gray-300/40 rounded-md"
@@ -159,7 +161,7 @@ export default function AnimeShowcase() {
         <h2 className="mb-4 text-2xl font-bold">All Animes</h2>
         <div className="space-y-6">
           {loading
-            ? [...Array(10)].map((_, index) => (
+            ? Array.from({ length: 10 }).map((_, index) => (
                 <div key={index} className="flex items-center gap-4">
                   <Skeleton
                     className="bg-gray-300/40 w-48 h-56 rounded-md"
@@ -173,9 +175,8 @@ export default function AnimeShowcase() {
                 </div>
               ))
             : data.slice(3, 15).map((anime) => (
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4" key={anime.mal_id}>
                   <Link
-                    key={anime.mal_id}
                     href={`/anime/animeSearch/${anime.mal_id}`}
                     className="relative flex items-center gap-4 cursor-pointer group bg-cover max-w-[200px] h-[300px] rounded-md"
                   >
@@ -202,8 +203,8 @@ export default function AnimeShowcase() {
                       <span className="flex items-center">
                         {Array.from({
                           length: Math.floor(anime.score / 2),
-                        }).map(() => (
-                          <FaStar className="text-yellow-400" />
+                        }).map((_, index) => (
+                          <FaStar className="text-yellow-400" key={index} />
                         ))}
                       </span>
                     </p>
@@ -218,12 +219,23 @@ export default function AnimeShowcase() {
               ))}
         </div>
       </div>
-      <div className="flex items-center gap-4 justify-center mt-14">
-        <Button onClick={() => _setPage(page - 1)} disabled={page === 1} className="rounded-md" style={{ borderRadius: "5px" }}>
+      <div className="mt-14 flex items-center justify-center gap-4">
+        <Button
+          onClick={() => _setPage(page - 1)}
+          disabled={page === 1}
+          className="rounded-md"
+          style={{ borderRadius: "5px" }}
+        >
           Prev
         </Button>
-        <span className="text-lg font-bold border-b-2 border-gray-300 rounded-md p-2">{page}</span>
-        <Button onClick={() => _setPage(page + 1)} disabled={page === 9} style={{ borderRadius: "5px" }}>
+        <span className="p-2 text-lg font-bold border-b-2 border-gray-300 rounded-md">
+          {page}
+        </span>
+        <Button
+          onClick={() => _setPage(page + 1)}
+          disabled={page === 9}
+          style={{ borderRadius: "5px" }}
+        >
           Next
         </Button>
       </div>

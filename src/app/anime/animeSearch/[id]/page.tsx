@@ -147,7 +147,7 @@ export default function AnimeDetails() {
         <h2 className="text-3xl font-bold text-purple-400 mb-2">Watch Now On</h2>
         <div className="text-gray-300 leading-relaxed flex gap-3 ">
           {anime.streaming.map((stream , index) => 
-          <a href={stream.url}><Button variant="destructive" style={{ borderRadius: "6px" }}>{stream.name}</Button></a>
+          <a key={index} href={stream.url}><Button variant="destructive" style={{ borderRadius: "6px" }}>{stream.name}</Button></a>
           )}
         </div>
       </div>
