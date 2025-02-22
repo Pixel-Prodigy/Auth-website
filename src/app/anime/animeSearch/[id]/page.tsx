@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { Skeleton } from "@/components/ui/skeleton";
-
+import { Button } from "@/components/ui/button";
+import { div } from "framer-motion/client";
 export type DataType = {
   mal_id: number;
   images: {
@@ -25,6 +26,7 @@ export type DataType = {
   duration: string;
   score: number;
   rank: number;
+  streaming: {name: string ; url: string}[];
   rating: string;
   synopsis: string;
   background: string;
@@ -45,17 +47,13 @@ export default function AnimeDetails() {
     const fetchAnime = async () => {
       try {
         const response = await fetch(
-          `https://api.jikan.moe/v4/seasons/now?page=1`
+          `https://api.jikan.moe/v4/anime/${id}/full`
         );
         if (!response.ok) throw new Error(`Error: ${response.statusText}`);
 
         const result = await response.json();
-        const foundAnime = result.data.find(
-          (anime: DataType) => anime.mal_id === Number(id)
-        );
-
-        if (!foundAnime) throw new Error("Anime not found");
-        setAnime(foundAnime);
+        setAnime(result.data);
+        console.log(result.data);
       } catch (err) {
         setError("Failed to fetch anime data.");
         console.error(err);
@@ -65,29 +63,19 @@ export default function AnimeDetails() {
     fetchAnime();
   }, [id]);
 
-  if (error) return <p className="text-red-500">{error}</p>;
+  if (error) return <p className="text-red-500 text-center mt-10">{error}</p>;
 
   if (!anime) {
     return (
-      <div className="max-w-4xl mx-auto pt-32 ">
-        <Skeleton
-          className="h-10 bg-gray-300/50   w-[300px] mx-auto mb-2"
-          style={{ borderRadius: "8px" }}
-        />
-        <Skeleton
-          className="h-6  bg-gray-300/50  w-[200px] mx-auto mb-4"
-          style={{ borderRadius: "8px" }}
-        />
-        <Skeleton
-          className="h-80 bg-gray-300/50   w-full max-w-md mx-auto rounded-lg"
-          style={{ borderRadius: "8px" }}
-        />
-        <div className="mt-4 space-y-2">
-          {[...Array(10)].map((_, i) => (
+      <div className="max-w-5xl mx-auto pt-32 px-4">
+        <Skeleton className="h-12 w-80 mx-auto mb-4 bg-gray-300/50" />
+        <Skeleton className="h-6 w-60 mx-auto mb-6 bg-gray-300/50" />
+        <Skeleton className="h-96 w-full max-w-lg mx-auto bg-gray-300/50" />
+        <div className="mt-6 space-y-3">
+          {[...Array(8)].map((_, i) => (
             <Skeleton
               key={i}
-              className="h-5 w-full bg-gray-300/50 max-w-[600px] mx-auto"
-              style={{ borderRadius: "8px" }}
+              className="h-5 w-full max-w-2xl mx-auto bg-gray-300/50"
             />
           ))}
         </div>
@@ -96,69 +84,95 @@ export default function AnimeDetails() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto pt-32 ">
-      <h1 className="text-4xl font-bold line-clamp-1 max-w-[900px]  mb-2 text-white text-center">
+    <div className="max-w-5xl mx-auto pt-32 px-4 text-white pb-8">
+      <h1 className="text-5xl font-bold text-center mb-4">
         {anime.title_english || anime.title_japanese}
       </h1>
-      <h2 className="text-2xl text-white text-center max-w-[700px] mx-auto mb-4">
-        {anime.title_english ? anime.title_japanese : ""}
-      </h2>
-
-      <img
-        src={anime.images.jpg.large_image_url}
-        alt={anime.title_english || "Anime Image"}
-        className="w-full max-w-md mx-auto rounded-lg shadow-md"
-      />
-      <h3 className=" text-white mt-4 font-semibold text-4xl text-center mx-auto">
-        Scored By {anime.scored_by} Watchers
-      </h3>
-      <h3 className="text-red-500 mt-2 text-start font-semibold text-2xl max-w-[450px] mx-auto">
-        <span className="text-2xl text-white font-bold mr-6 ">
-          Anime Score:
-        </span>
-        {anime.score}
-      </h3>
-
-      <div className="flex flex-col gap-20">
-        <div className="mt-20 space-y-2 ">
-          {anime.trailer.embed_url && (
-            <div className="mt-4">
-              <h2 className="text-3xl font-bold text-blue-500 mb-2">Trailer</h2>
-              <iframe
-                src={anime.trailer.embed_url}
-                title="Anime Trailer"
-                allowFullScreen
-                className="w-full aspect-video rounded-md shadow-md"
-              />
-            </div>
-          )}
-
-          <div className="flex flex-col gap-5">
-            <h2 className="text-xl text-orange-500 font-semibold">
-              Synopsis -
-            </h2>
-            <p className="text-gray-300">
-              {anime.synopsis || "No synopsis available."}
-            </p>
-          </div>
-          <div
-            className="mt-4 bg-gray-300/50 max-w-[600px] h-[600px] mx-auto rounded-lg p-4"
-            style={{ borderRadius: "8px" }}
-          ></div>
-          {anime.background && (
-            <div className="mt-4">
-              <h2 className="text-xl font-semibold">Background</h2>
-              <p className="text-gray-700">{anime.background}</p>
-            </div>
+      {anime.title_english && (
+        <h2 className="text-xl text-gray-400 text-center mb-6">
+          {anime.title_japanese}
+        </h2>
+      )}
+      <div className="flex flex-col md:flex-row gap-8 items-center">
+        <img
+          src={anime.images.jpg.large_image_url}
+          alt={anime.title_english}
+          className="w-full max-w-md rounded-lg shadow-lg"
+        />
+        <div className="space-y-3 text-lg">
+          <p>
+            <span className="font-semibold text-blue-400">Score:</span>{" "}
+            {anime.score || "N/A"} ({anime.scored_by} reviews)
+          </p>
+          <p>
+            <span className="font-semibold text-green-400">Episodes:</span>{" "}
+            {anime.episodes || "Unknown"}
+          </p>
+          <p>
+            <span className="font-semibold text-orange-400">Duration:</span>{" "}
+            {anime.duration}
+          </p>
+          <p>
+            <span className="font-semibold text-purple-400">Rank:</span> #
+            {anime.rank || "N/A"}
+          </p>
+          <p>
+            <span className="font-semibold text-red-400">Favorites:</span>{" "}
+            {anime.favorites}
+          </p>
+          <p>
+            <span className="font-semibold text-yellow-400">Popularity:</span>{" "}
+            {anime.popularity}
+          </p>
+          <p>
+            <span className="font-semibold text-gray-300">Genres:</span>{" "}
+            {anime.genres.map((g) => g.name).join(", ")}
+          </p>
+        </div>
+      </div>
+      {anime.trailer.embed_url && (
+        <div className="mt-12">
+          <h2 className="text-3xl font-bold text-blue-400 mb-4 text-center">
+            Trailer
+          </h2>
+          <iframe
+            src={anime.trailer.embed_url}
+            title="Anime Trailer"
+            allowFullScreen
+            className="w-full aspect-video rounded-md shadow-md"
+          />
+        </div>
+      )}
+      <div className="mt-12  flex flex-col justify-center gap-2 items-center">
+        <h2 className="text-3xl font-bold text-purple-400 mb-2">Watch Now On</h2>
+        <div className="text-gray-300 leading-relaxed flex gap-3 ">
+          {anime.streaming.map((stream , index) => 
+          <a href={stream.url}><Button variant="destructive" style={{ borderRadius: "6px" }}>{stream.name}</Button></a>
           )}
         </div>
+      </div>
+      <div className="mt-12">
+        <h2 className="text-2xl font-bold text-orange-400 mb-2">Synopsis</h2>
+        <p className="text-gray-300 leading-relaxed">
+          {anime.synopsis || "No synopsis available."}
+        </p>
+      </div>
+      {anime.background && (
+        <div className="mt-8">
+          <h2 className="text-2xl font-bold text-gray-400 mb-2">Background</h2>
+          <p className="text-gray-300 leading-relaxed">{anime.background}</p>
+        </div>
+      )}
+      <div className="mt-10 text-center">
         <a
           href={anime.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded-lg shadow-md hover:bg-blue-700 transition"
+          className="inline-blocktransition"
         >
-          View on MyAnimeList
+          <Button aria-label="View on MyAnimeList" role="link" style={{ borderRadius: "6px" }}>
+            View on MyAnimeList
+          </Button>
         </a>
       </div>
     </div>
